@@ -1,0 +1,14 @@
+# Python environments and generated files
+.venv/
+**/.venv/
+__pycache__/
+*.py[cod]
+
+# Local configuration and database files
+backend/.env
+backend/database/*.db
+backend/database/*.db-*
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/dist/

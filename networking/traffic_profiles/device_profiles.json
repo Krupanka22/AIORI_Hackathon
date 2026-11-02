@@ -1,0 +1,165 @@
+{
+  "profiles": {
+    "cctv_camera": {
+      "description": "Continuous video stream upload with periodic control commands",
+      "traffic_pattern": "continuous",
+      "protocols": {
+        "tcp": 0.80,
+        "udp": 0.20
+      },
+      "bandwidth_kbps": {
+        "min": 1000,
+        "max": 4000,
+        "typical": 2000
+      },
+      "packet_size": {
+        "min": 500,
+        "max": 1400,
+        "typical": 1200
+      },
+      "inter_arrival_ms": {
+        "min": 1,
+        "max": 50,
+        "typical": 10
+      },
+      "upload_download_ratio": 5.0,
+      "connection_duration_sec": {
+        "min": 10,
+        "max": 3600,
+        "typical": 300
+      },
+      "iperf3": {
+        "tcp": "-t {duration} -b 2M -l 1400",
+        "udp": "-u -t {duration} -b 500K -l 1200"
+      }
+    },
+    "temperature_sensor": {
+      "description": "Small periodic UDP readings every few seconds",
+      "traffic_pattern": "periodic",
+      "protocols": {
+        "tcp": 0.10,
+        "udp": 0.90
+      },
+      "bandwidth_kbps": {
+        "min": 1,
+        "max": 10,
+        "typical": 5
+      },
+      "packet_size": {
+        "min": 50,
+        "max": 200,
+        "typical": 100
+      },
+      "inter_arrival_ms": {
+        "min": 3000,
+        "max": 10000,
+        "typical": 5000
+      },
+      "upload_download_ratio": 0.8,
+      "connection_duration_sec": {
+        "min": 0.1,
+        "max": 2,
+        "typical": 0.5
+      },
+      "iperf3": {
+        "udp": "-u -t {duration} -b 5K -l 100 --pacing-timer 5000000"
+      }
+    },
+    "smart_door_lock": {
+      "description": "Infrequent TCP bursts for lock/unlock events",
+      "traffic_pattern": "burst",
+      "protocols": {
+        "tcp": 0.95,
+        "udp": 0.05
+      },
+      "bandwidth_kbps": {
+        "min": 1,
+        "max": 50,
+        "typical": 10
+      },
+      "packet_size": {
+        "min": 100,
+        "max": 500,
+        "typical": 256
+      },
+      "inter_arrival_ms": {
+        "min": 10000,
+        "max": 60000,
+        "typical": 15000
+      },
+      "upload_download_ratio": 1.2,
+      "connection_duration_sec": {
+        "min": 0.5,
+        "max": 5,
+        "typical": 1
+      },
+      "iperf3": {
+        "tcp": "-t {duration} -b 10K -l 256"
+      }
+    },
+    "smart_light": {
+      "description": "Small TCP control commands with periodic status updates",
+      "traffic_pattern": "periodic",
+      "protocols": {
+        "tcp": 0.70,
+        "udp": 0.30
+      },
+      "bandwidth_kbps": {
+        "min": 1,
+        "max": 20,
+        "typical": 8
+      },
+      "packet_size": {
+        "min": 50,
+        "max": 300,
+        "typical": 150
+      },
+      "inter_arrival_ms": {
+        "min": 5000,
+        "max": 30000,
+        "typical": 10000
+      },
+      "upload_download_ratio": 0.5,
+      "connection_duration_sec": {
+        "min": 0.1,
+        "max": 3,
+        "typical": 0.5
+      },
+      "iperf3": {
+        "tcp": "-t {duration} -b 8K -l 150"
+      }
+    },
+    "motion_sensor": {
+      "description": "Event-driven UDP bursts when motion is detected",
+      "traffic_pattern": "event_driven",
+      "protocols": {
+        "tcp": 0.20,
+        "udp": 0.80
+      },
+      "bandwidth_kbps": {
+        "min": 5,
+        "max": 100,
+        "typical": 20
+      },
+      "packet_size": {
+        "min": 100,
+        "max": 400,
+        "typical": 200
+      },
+      "inter_arrival_ms": {
+        "min": 100,
+        "max": 30000,
+        "typical": 8000
+      },
+      "upload_download_ratio": 3.0,
+      "connection_duration_sec": {
+        "min": 0.1,
+        "max": 10,
+        "typical": 2
+      },
+      "iperf3": {
+        "udp": "-u -t {duration} -b 20K -l 200"
+      }
+    }
+  }
+}
